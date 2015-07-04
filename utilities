@@ -1,19 +1,17 @@
-    func secs2HMMSS(secsParam:Float) -> String {
-        // convert time value in seconds to an H:MM:SS string
-        
-        var localSecsParam = Int(secsParam)
+    func secs2HMMSS(secsParam:Int) -> String {
+        var localSecsParam = secsParam
         var returnValue = ""
         
-        let hrs = Int(localSecsParam / 3600)
-        localSecsParam = Int(localSecsParam) - (hrs * 3600)
+        let hrs = localSecsParam / 3600
+        localSecsParam = localSecsParam - (hrs * 3600)
         
-        let mins = Int(localSecsParam / 60)
-        localSecsParam = Int(localSecsParam) - (mins * 60)
+        let mins = localSecsParam / 60
+        localSecsParam = localSecsParam - (mins * 60)
         let minsStr = "0\(mins)"
         let r4 = Range(start:advance(minsStr.endIndex,-2), end: minsStr.endIndex)
         let minsStr2 = minsStr.substringWithRange(r4)
         
-        var secs = Int(secsParam % 60)
+        var secs = secsParam % 60
         let secsStr = "0\(secs)"
         let r5 = Range(start:advance(secsStr.endIndex,-2), end: secsStr.endIndex)
         let secsStr2 = secsStr.substringWithRange(r5)
@@ -26,3 +24,5 @@
         }
         return returnValue
     }
+
+}
