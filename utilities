@@ -1,4 +1,6 @@
     func secs2HMMSS(secsParam:Int) -> String {
+        // Convert time in seconds to HMMSS string
+    
         var localSecsParam = secsParam
         var returnValue = ""
         
@@ -25,4 +27,25 @@
         return returnValue
     }
 
-}
+
+    func HMMSS2Secs(HMMSS:String) -> Int {
+        // Convert H:MM:SS time string to time in seconds.
+        
+        let parts = split(HMMSS) {$0 == ":"}
+        var secs = 0
+        var mins = 0
+        var hrs = 0
+        
+        let howManyParts = parts.count
+        
+        if howManyParts == 3 {
+            secs = parts[2].toInt()!
+            mins = parts[1].toInt()!
+            hrs = parts[0].toInt()!
+        } else {
+            secs = parts[1].toInt()!
+            mins = parts[0].toInt()!
+        }
+        
+        return ( (hrs * 3600) + (mins * 60) + secs )
+    }
